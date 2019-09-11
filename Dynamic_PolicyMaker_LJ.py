@@ -18,15 +18,15 @@ def dynamic_decision_making(N, K):
     index_decision_making = 1
     Remain_Target = Target.copy()
     count = 1
-    while count <= 100 and Remain_UAV:
-        if index_decision_making and Remain_Target:
+    while count <= 100 and Remain_UAV: # 作战时间未到或仍有我方UAV剩余
+        if index_decision_making and Remain_Target: # 可以开始进行决策 & 找到的目标集合非空
             print('make decision for founded target')
             Remain_UAV.clear()
             for i in range(len(Remain_Target)):
                 for j in range(len(waypoint_list)):
                     if waypoint_list[j][-1] == 1:
                         Remain_UAV.append(j)
-                UAV_index=random.choice(Remain_UAV)
+                UAV_index=random.choice(Remain_UAV) # 随机选择一个UAV对该target i进行打击
                 waypoint_list[UAV_index][-1] = 2
                 Target[i][-1] = 2
                 print('at step %d' %count, 'remain UAVs are ', Remain_UAV)
